@@ -1,28 +1,14 @@
 import React, { Component } from 'react'
-import QuizQuestion from './QuizQuestion.js'
-import QuizEnd from './QuizEnd.js'
-import { stat } from 'fs';
+import './App.css'
 
-let quizData = require('./quiz_data.json')
+import Quiz from './Quiz.js'
 
-class Quiz extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { quiz_position: 1 }
-  }
-  showNextQuestion() {
-    this.setState((state) => {
-      return { quiz_position: state.quiz_position + 1 }
-    })
-  }
+class App extends Component {
   render() {
-    const isQuizEnd = ((this.state.quiz_position - 1) === quizData.quiz_questions.length)
     return (
-      <div>
-        {isQuizEnd ? <QuizEnd /> : <QuizQuestion quiz_question={quizData.quiz_questions[this.state.quiz_position - 1]} showNextQuestionHandler={this.showNextQuestion.bind(this)} />}
-      </div>
+      <Quiz />
     )
   }
 }
 
-export default Quiz
+export default App
